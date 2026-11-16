@@ -8,38 +8,34 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    overflow: hidden;
     margin: 0;
-    font-family: Arial, sans-serif;
 }
 
 #buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
 }
 
-.btn {
-    background-color: #663399;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 24px 40px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
+.btn,
 .stop {
-    background-color: #333;
-    color: white;
+    background-color: #663399;
     border: none;
     border-radius: 5px;
-    padding: 24px 40px;
-    font-size: 18px;
+    color: white;
+    padding: 20px 30px;
+    margin: 10px;
+    font-size: 16px;
     cursor: pointer;
 }
 
-button:hover {
+.btn:hover,
+.stop:hover {
     opacity: 0.8;
 }
 
+.btn:active,
+.stop:active {
+    transform: scale(0.96);
+}

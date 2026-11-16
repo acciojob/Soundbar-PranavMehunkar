@@ -1,36 +1,35 @@
 const buttons = document.getElementById('buttons');
-
-const sounds = [
-    'applause',
-    'boo',
-    'gasp',
-    'tada',
-    'victory',
-    'wrong'
-];
+const soundButtons = document.querySelectorAll('.btn');
+const stopButton = document.querySelector('.stop');
 
 let currentAudio = null;
 
-sounds.forEach(sound => {
-    const button = document.querySelector(`.${sound}`);
+soundButtons.forEach(button => {
+    button.addEventListener('click', () => {
 
-    if (button) {
-        button.addEventListener('click', () => {
-            stopSound();
+        // Stop previous audio
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
 
-            currentAudio = new Audio(`sounds/${sound}.mp3`);
-            currentAudio.play();
+        // Get sound name from button text
+        const soundName = button.textContent.toLowerCase();
+
+        // Play selected sound
+        currentAudio = new Audio(`sounds/${soundName}.mp3`);
+
+        currentAudio.play().catch(error => {
+            console.error('Audio playback failed:', error);
         });
-    }
+    });
 });
 
-function stopSound() {
+// Stop button functionality
+stopButton.addEventListener('click', () => {
     if (currentAudio) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
+        currentAudio = null;
     }
-}
-
-const stopButton = document.querySelector('.stop');
-
-stopButton.addEventListener('click', stopSound);
+});
